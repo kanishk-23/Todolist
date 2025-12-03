@@ -17,7 +17,7 @@ function TodoListCard({todos, setTodos, loading, setLoading, setError, setForm, 
         .then(res => {
         setTodos(todos.map(t => t._id === task._id ? res.data.data : t));
         })
-        .catch(res => setError(res.response.data.message))
+        .catch(res => setError(res.response?.data?.message || 'Server Error'))
         .finally(() => setLoading(false));
     };
   
@@ -25,7 +25,7 @@ function TodoListCard({todos, setTodos, loading, setLoading, setError, setForm, 
         setLoading(true);
         deleteTodo(id)
         .then(() => setTodos(todos.filter(t => t._id !== id)))
-        .catch(res => setError(res.response.data.message))
+        .catch(res => setError(res.response?.data?.message || 'Server Error'))
         .finally(() => setLoading(false));
     }
   

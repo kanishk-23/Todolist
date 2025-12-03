@@ -1,12 +1,12 @@
 const cors = require('cors');
-const express  = require('express');
 const routes = require('./routes/todoroutes');
-const dotenv = require('dotenv');
 const DBconnection = require('./databaseconnection');
-const app = express();
-const port = process.env.PORT || 4000;
+const dotenv = require('dotenv');
 dotenv.config();
-app.use(cors({origin: 'http://localhost:3000'}));
+const port = process.env.port;
+const express  = require('express');
+const app = express();
+app.use(cors({origin: process.env.frontend}));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 

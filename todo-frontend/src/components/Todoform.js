@@ -21,7 +21,7 @@ function TodoFormCard({ form, setForm, todos, setTodos, editId, setEditId, setLo
         setForm({ message: '', start_date: '', due_date: '', is_active: true });
         setError('');
         })
-        .catch(res => setError(res.response.data.message))
+        .catch(res => setError(res.response?.data?.message || 'Server Error'))
         .finally(() => setLoading(false));
     };
 

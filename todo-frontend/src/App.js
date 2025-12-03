@@ -14,7 +14,7 @@ function App() {
     setLoading(true);
     getTodos()
       .then(res => setTodos(res.data.data))
-      .catch(res => setError(res.response.error.message))
+      .catch(res => setError(res.response?.error?.message || 'Server Error'))
       .finally(() => setLoading(false));
   },[]);
 
