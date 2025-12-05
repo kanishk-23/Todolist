@@ -3,10 +3,10 @@ const routes = require('./routes/todoroutes');
 const DBconnection = require('./databaseconnection');
 const dotenv = require('dotenv');
 dotenv.config();
-const port = process.env.port;
+const port = process.env.PORT;
 const express  = require('express');
 const app = express();
-app.use(cors({origin: process.env.frontend}));
+app.use(cors({origin: `*`}));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
