@@ -1,3 +1,4 @@
+import './App.css';
 import { useEffect, useState } from 'react';
 import { getTodos} from './services/todoservices';
 import TodoFormCard from './components/Todoform';
@@ -7,7 +8,6 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [editId, setEditId] = useState(null);
   const [form, setForm] = useState({message:'',start_date:'', due_date:''});
 
   useEffect(()=>{
@@ -19,32 +19,36 @@ function App() {
   },[]);
 
   return(
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 20 }}>
-      <h1 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 20 }}>TO DO LIST</h1>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {loading && <p>Loading...</p>}
+    <div className="flex items-center bg-green-200 min-h-screen">
+      <div className="max-w-2xl bg-white rounded-xl p-4 m-2">
+        <>
+          <h1 className="flex justify-center text-4xl font-bold">TO DO LIST</h1>
+          {error && <p className="flex justify-center text-red-500 text-lg">{error}</p>}
+          {loading && <p>Loading...</p>}
+        </>
 
-      <TodoFormCard
-        form={form}
-        setForm={setForm}
-        todos={todos}
-        setTodos={setTodos}
-        editId={editId}
-        setEditId={setEditId}
-        setLoading={setLoading}
-        setError={setError}
-      />
+        <div className="mb-5">
+          <TodoFormCard
+            form={form}
+            setForm={setForm}
+            todos={todos}
+            setTodos={setTodos}
+            setLoading={setLoading}
+            setError={setError}
+          />
+        </div>
+        
+        <div>
+          <TodoListCard
+            todos={todos}
+            setTodos={setTodos}
+            loading={loading}
+            setLoading={setLoading}
+            setError={setError}
+          />
+        </div>
 
-      <TodoListCard
-        todos={todos}
-        setTodos={setTodos}
-        loading={loading}
-        setLoading={setLoading}
-        setError={setError}
-        setForm={setForm}
-        setEditId={setEditId}
-      />
-
+      </div>
     </div>
   );
 }

@@ -90,7 +90,7 @@ exports.updateTodoById = async (req, res) => {
     if ('message' in data) todo.message = data.message;
     if ('is_active' in data) todo.is_active = data.is_active;
 
-    // Optionally auto-update is_active if due_date is passed
+    // Auto-update "is_active", if due_date is passed
     const currentDate = new Date();
     currentDate.setHours(0, 0, 0, 0);
 
